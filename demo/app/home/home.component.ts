@@ -9,15 +9,17 @@ import {ModalComponent} from '../components/modal/modal.component';
 export class HomeComponent {
     private modal = new ModalComponent();
 
+    /**
+     * Get alert modal.
+     */
     onAlertClick() {
         this.modal.alert('The message goes here..');
     }
 
+    /**
+     * Get confirm modal.
+     */
     onConfirmClick() {
-        this.modal.confirm({message: 'You cool with that..?'}, value => {
-            let message = (value === true) ? 'Thank you' : 'That\'s okay.';
-
-            setTimeout(this.modal.alert.bind(null, message), 400);
-        });
+        this.modal.confirm({message: 'You cool with that..?'}, value => console.info(value));
     }
 }

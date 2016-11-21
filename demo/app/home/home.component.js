@@ -14,15 +14,17 @@ var HomeComponent = (function () {
     function HomeComponent() {
         this.modal = new modal_component_1.ModalComponent();
     }
+    /**
+     * Get alert modal.
+     */
     HomeComponent.prototype.onAlertClick = function () {
         this.modal.alert('The message goes here..');
     };
+    /**
+     * Get confirm modal.
+     */
     HomeComponent.prototype.onConfirmClick = function () {
-        var _this = this;
-        this.modal.confirm({ message: 'You cool with that..?' }, function (value) {
-            var message = (value === true) ? 'Thank you' : 'That\'s okay.';
-            setTimeout(_this.modal.alert.bind(null, message), 400);
-        });
+        this.modal.confirm({ message: 'You cool with that..?' }, function (value) { return console.info(value); });
     };
     HomeComponent = __decorate([
         core_1.Component({

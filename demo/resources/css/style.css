@@ -47,17 +47,17 @@
 @keyframes openConfirmModal {
   from {
     opacity: 0;
-    transform: scale(1.2) translateY(20px) rotate3d(-200, 100, -20, 30deg); }
+    transform: scale(0); }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0) rotate3d(0, 0, 0, 0deg); } }
+    transform: scale(1); } }
 @keyframes closeConfirmModal {
   from {
     opacity: 1;
-    transform: scale(1) translateY(0) rotate3d(0, 0, 0, 0deg); }
+    transform: scale(1); }
   to {
     opacity: 0;
-    transform: scale(1.2) translateY(20px) rotate3d(-200, 100, -20, 30deg); } }
+    transform: scale(0); } }
 .fadein {
   animation: fadeIn;
   animation-duration: 0.5s;
@@ -96,7 +96,7 @@
 
 .open-confirm-modal {
   animation: openConfirmModal;
-  animation-duration: 0.5s;
+  animation-duration: 0.2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards; }
 
