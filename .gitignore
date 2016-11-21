@@ -14,6 +14,8 @@ demo/resources/css/style.css.map
 demo/logs
 demo/*.log
 demo/npm-debug.log*
+logs
+*.log
 
 # Runtime data
 pids

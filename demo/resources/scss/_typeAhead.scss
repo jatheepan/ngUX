@@ -1,0 +1,34 @@
+.type-ahead-list {
+  z-index: 1;
+  width: 100%;
+  position: absolute;
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul {
+    background-color: #fff;
+    -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+
+  }
+
+  li {
+    padding: 10px;
+    cursor: pointer;
+    color: $primary-color;
+    border-bottom: 1px solid #eee;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+
+    &.selected {
+      color: $secondary-color;
+      background-color: #283445;
+    }
+  }
+}

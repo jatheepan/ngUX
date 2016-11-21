@@ -1,0 +1,70 @@
+.tk-modal-mask {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+}
+
+.tk-modal {
+  left: 50%;
+  z-index: 1;
+  top: 200px;
+  perspective: 130px;
+  position: absolute;
+  margin: 0 0 0 -150px;
+
+  .modal-box {
+    padding: 0;
+    color: #1f1f1f;
+    width: 300px;
+    height: 140px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: $corner-radius-lite;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+
+    .modal-content {
+      padding: 10px;
+      margin-top: 25px;
+      display: inline-block;
+    }
+
+    .buttons-wrapper {
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      position: absolute;
+      background-color: #fff;
+      border-top: 1px solid #e1e1e1;
+      justify-content: space-between;
+      border-radius: 0 0 $corner-radius-lite $corner-radius-lite;
+    }
+  }
+
+
+  button {
+    border: 0;
+    background: none;
+    flex: 1;
+    //width: 50%;
+    padding: 15px;
+    outline: none;
+    border-radius: 0;
+
+    &:focus {
+      background-color: #f2f2f2;
+    }
+
+    &:active {
+      background-color: #e1e1e1;
+    }
+
+    &:first-child {
+      border-right: 1px solid #e1e1e1;
+    }
+  }
+}
