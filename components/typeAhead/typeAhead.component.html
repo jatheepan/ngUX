@@ -1,0 +1,6 @@
+<input name="typeAheadField" type="text" (keyup)="onKeyUp($event)" [(ngModel)]="fieldValue" (keydown)="onKeyDown($event)">
+<div *ngIf="feeds.length" class="type-ahead-list">
+    <ul>
+        <li *ngFor="let feed of feeds" (click)="onFeedClick(feed)" [ngClass]="{selected: feed.selected}">{{feed.first_name}}</li>
+    </ul>
+</div>
