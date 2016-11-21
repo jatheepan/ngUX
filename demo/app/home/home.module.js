@@ -11,12 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var home_component_1 = require('./home.component');
+var modal_module_1 = require('../components/modal/modal.module');
 var HomeModule = (function () {
     function HomeModule() {
     }
     HomeModule = __decorate([
         core_1.NgModule({
-            imports: [common_1.CommonModule],
+            imports: [common_1.CommonModule, modal_module_1.ModalModule],
             declarations: [home_component_1.HomeComponent],
             exports: [home_component_1.HomeComponent]
         }), 

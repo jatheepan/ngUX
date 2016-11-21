@@ -9,9 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var modal_component_1 = require('../components/modal/modal.component');
 var HomeComponent = (function () {
     function HomeComponent() {
+        this.modal = new modal_component_1.ModalComponent();
     }
+    HomeComponent.prototype.onAlertClick = function () {
+        this.modal.alert('The message goes here..');
+    };
+    HomeComponent.prototype.onConfirmClick = function () {
+        var _this = this;
+        this.modal.confirm({ message: 'You cool with that..?' }, function (value) {
+            var message = (value === true) ? 'Thank you' : 'That\'s okay.';
+            setTimeout(_this.modal.alert.bind(null, message), 400);
+        });
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'home',
