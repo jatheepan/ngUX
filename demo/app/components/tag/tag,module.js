@@ -9,22 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var home_component_1 = require('./home.component');
-var modal_module_1 = require('../components/modal/modal.module');
-var tag_module_1 = require('../components/tag/tag,module');
-var HomeModule = (function () {
-    function HomeModule() {
+var tag_component_1 = require('./tag.component');
+var TagModule = (function () {
+    function TagModule() {
     }
-    HomeModule = __decorate([
+    TagModule = __decorate([
         core_1.NgModule({
-            imports: [common_1.CommonModule, modal_module_1.ModalModule, tag_module_1.TagModule],
-            declarations: [home_component_1.HomeComponent],
-            exports: [home_component_1.HomeComponent]
+            declarations: [tag_component_1.TagComponent],
+            exports: [tag_component_1.TagComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], HomeModule);
-    return HomeModule;
+    ], TagModule);
+    return TagModule;
 }());
-exports.HomeModule = HomeModule;
-//# sourceMappingURL=home.module.js.map
+exports.TagModule = TagModule;
+//# sourceMappingURL=tag,module.js.map

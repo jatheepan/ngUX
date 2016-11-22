@@ -391,6 +391,13 @@ ul.data-list {
       color: #6daa09;
       background-color: #283445; }
 
+.tag-editor {
+  outline: none;
+  padding: 20px;
+  margin-top: 30px;
+  min-height: 100px;
+  border: 1px solid #000; }
+
 #page {
   display: flex;
   align-items: flex-start;
