@@ -26,6 +26,22 @@ var HomeComponent = (function () {
     HomeComponent.prototype.onConfirmClick = function () {
         this.modal.confirm({ message: 'You cool with that..?' }, function (value) { return console.info(value); });
     };
+    HomeComponent.prototype.onPromptModalClick = function () {
+        this.modal.prompt({ message: 'The awesome question' }, function (value) { return console.info(value); });
+    };
+    /**
+     * Get custom modal.
+     */
+    HomeComponent.prototype.onCustomModalClick = function () {
+        this.modal.custom({
+            message: 'This is a custom message modal',
+            buttons: [
+                { label: 'Apple', value: 'apple' },
+                { label: 'Mango', value: 'mango' },
+                { label: 'Orange', value: 'orange' }
+            ]
+        }, function (value) { return console.log(value); });
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'home',

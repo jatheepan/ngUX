@@ -22,4 +22,22 @@ export class HomeComponent {
     onConfirmClick() {
         this.modal.confirm({message: 'You cool with that..?'}, value => console.info(value));
     }
+
+    onPromptModalClick() {
+        this.modal.prompt({message: 'The awesome question'}, value => console.info(value));
+    }
+
+    /**
+     * Get custom modal.
+     */
+    onCustomModalClick() {
+        this.modal.custom({
+            message: 'This is a custom message modal',
+            buttons: [
+                {label: 'Apple', value: 'apple'},
+                {label: 'Mango', value: 'mango'},
+                {label: 'Orange', value: 'orange'}
+            ]
+        }, value => console.log(value));
+    }
 }

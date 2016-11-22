@@ -15,4 +15,15 @@ export class ModalComponent {
         var modal = new TKModal();
         modal.confirm(options, callback);
     }
+
+    prompt(options, callback) {
+        var modal = new TKModal();
+        modal.prompt(options, callback);
+    }
+
+
+    custom(options, callback) {
+        var modal = new TKModal();
+        modal.custom(options, callback);
+    }
 }

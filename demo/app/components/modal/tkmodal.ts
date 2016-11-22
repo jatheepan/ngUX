@@ -120,6 +120,30 @@ export class TKModal {
     }
 
     /**
+     * Get prompt modal.
+     * @param options
+     * @param callback
+     */
+    getPromptModal(options, callback) {
+        let buttons = [{label: 'Submit', value: 'value'}];
+
+        this.getModal(options)
+            .appendChild(this.getModalButtons(buttons, callback));
+    }
+
+    /**
+     * Custom modal.
+     * @param options
+     * @param callback
+     */
+    getCustomModal(options, callback) {
+        let buttons = options && options.buttons || [];
+
+        this.getModal(options)
+            .appendChild(this.getModalButtons(buttons, callback));
+    }
+
+    /**
      * Get buttons for Confirm Modal.
      * @param buttons
      * @param callback
@@ -168,6 +192,26 @@ export class TKModal {
         this.getAlertModal(options);
     }
 
+    /**
+     * Main method to call for prompt.
+     * @param options
+     * @param callback
+     */
+    prompt(options, callback) {
+        this.getPromptModal(options, function(value) {
+            typeof callback === 'function' && callback(value);
+        }.bind(this));
+    }
+    /**
+     * Main method to call for custom modal.
+     * @param options
+     * @param callback
+     */
+    custom(options, callback) {
+        this.getCustomModal(options, function(value) {
+            typeof callback === 'function' && callback(value);
+        }.bind(this));
+    }
     /**
      * Destroy Mask and Modal.
      */

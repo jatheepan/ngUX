@@ -22,6 +22,14 @@ var ModalComponent = (function () {
         var modal = new tkmodal_1.TKModal();
         modal.confirm(options, callback);
     };
+    ModalComponent.prototype.prompt = function (options, callback) {
+        var modal = new tkmodal_1.TKModal();
+        modal.prompt(options, callback);
+    };
+    ModalComponent.prototype.custom = function (options, callback) {
+        var modal = new tkmodal_1.TKModal();
+        modal.custom(options, callback);
+    };
     ModalComponent = __decorate([
         core_1.Component({
             template: ''

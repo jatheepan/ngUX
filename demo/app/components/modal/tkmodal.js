@@ -100,6 +100,26 @@ var TKModal = (function () {
         document.getElementById('modal-button-yes').focus();
     };
     /**
+     * Get prompt modal.
+     * @param options
+     * @param callback
+     */
+    TKModal.prototype.getPromptModal = function (options, callback) {
+        var buttons = [{ label: 'Submit', value: 'value' }];
+        this.getModal(options)
+            .appendChild(this.getModalButtons(buttons, callback));
+    };
+    /**
+     * Custom modal.
+     * @param options
+     * @param callback
+     */
+    TKModal.prototype.getCustomModal = function (options, callback) {
+        var buttons = options && options.buttons || [];
+        this.getModal(options)
+            .appendChild(this.getModalButtons(buttons, callback));
+    };
+    /**
      * Get buttons for Confirm Modal.
      * @param buttons
      * @param callback
@@ -138,6 +158,26 @@ var TKModal = (function () {
      */
     TKModal.prototype.alert = function (options) {
         this.getAlertModal(options);
+    };
+    /**
+     * Main method to call for prompt.
+     * @param options
+     * @param callback
+     */
+    TKModal.prototype.prompt = function (options, callback) {
+        this.getPromptModal(options, function (value) {
+            typeof callback === 'function' && callback(value);
+        }.bind(this));
+    };
+    /**
+     * Main method to call for custom modal.
+     * @param options
+     * @param callback
+     */
+    TKModal.prototype.custom = function (options, callback) {
+        this.getCustomModal(options, function (value) {
+            typeof callback === 'function' && callback(value);
+        }.bind(this));
     };
     /**
      * Destroy Mask and Modal.

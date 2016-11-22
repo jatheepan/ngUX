@@ -54,6 +54,7 @@
     padding: 15px;
     outline: none;
     border-radius: 0;
+    border-right: 1px solid #e1e1e1;
 
     &:focus {
       background-color: #f2f2f2;
@@ -63,8 +64,8 @@
       background-color: #e1e1e1;
     }
 
-    &:first-child {
-      border-right: 1px solid #e1e1e1;
+    &:last-child {
+      border-right: none;
     }
   }
 }
