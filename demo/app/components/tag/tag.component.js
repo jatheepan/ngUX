@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var Rx_1 = require('rxjs/Rx');
 var TagComponent = (function () {
-    function TagComponent() {
+    function TagComponent(renderer) {
+        this.renderer = renderer;
         this.items = [];
         this.content = '';
         this.selectedIndex = 0;
@@ -108,8 +109,12 @@ var TagComponent = (function () {
      */
     TagComponent.prototype.selectAnItem = function (item) {
         if (item && item.name) {
-            // TODO replace current word with..
-            this.content += '<a href="0">' + item.name + '</a>';
+            console.log(this.renderer);
+            var editor = this.renderer.selectRootElement('#editor');
+            var link = this.renderer.createElement(editor, 'a');
+            this.renderer.setElementAttribute(link, 'href', item.link);
+            this.renderer.setText(link, item.name);
+            this.setCursorPosition(link);
         }
         this.resetResults();
     };
@@ -140,6 +145,15 @@ var TagComponent = (function () {
         this.items = [];
         this.selectedIndex = 0;
     };
+    TagComponent.prototype.setCursorPosition = function (node, position) {
+        if (position === void 0) { position = 1; }
+        var range = document.createRange(), selection = window.getSelection();
+        range.selectNode(node);
+        range.collapse(true);
+        range.setStart(node, position);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Rx_1.Observable)
@@ -153,7 +167,7 @@ var TagComponent = (function () {
             selector: 'tag',
             templateUrl: '../app/components/tag/tag.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.Renderer])
     ], TagComponent);
     return TagComponent;
 }());

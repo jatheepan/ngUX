@@ -1,9 +1,9 @@
 {
   "dictionary": [
-    {"name":"apple"},
-    {"name":"amma"},
-    {"name":"appa"},
-    {"name":"anna"},
-    {"name":"frantic"}
+    {"name":"apple", "link": "http://www.google.ca"},
+    {"name":"amma", "link": "http://www.google.ca"},
+    {"name":"appa", "link": "http://www.google.ca"},
+    {"name":"anna", "link": "http://www.google.ca"},
+    {"name":"frantic", "link": "http://www.google.ca"}
   ]
 }

@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, Renderer, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 
 @Component({
@@ -13,7 +13,9 @@ export class TagComponent implements OnInit {
     @Input() suggestions: Observable<any>;
     @Output() keyup = new EventEmitter<any>();
 
+    constructor(private renderer: Renderer) {
 
+    }
     /**
      * On initialize subscribe to suggestions.
      */
@@ -117,8 +119,14 @@ export class TagComponent implements OnInit {
      */
     selectAnItem(item) {
         if(item && item.name) {
-            // TODO replace current word with..
-            this.content += '<a href="0">' + item.name + '</a>';
+            console.log(this.renderer);
+            let editor = this.renderer.selectRootElement('#editor');
+            let link = this.renderer.createElement(editor, 'a');
+
+            this.renderer.setElementAttribute(link, 'href', item.link);
+            this.renderer.setText(link, item.name);
+
+            this.setCursorPosition(link);
         }
 
         this.resetResults();
@@ -153,5 +161,17 @@ export class TagComponent implements OnInit {
     resetResults() {
         this.items = [];
         this.selectedIndex = 0;
+    }
+
+    setCursorPosition(node, position = 1) {
+        var range = document.createRange(),
+            selection = window.getSelection();
+
+        range.selectNode(node);
+        range.collapse(true);
+
+        range.setStart(node, position);
+        selection.removeAllRanges();
+        selection.addRange(range);
     }
 }
