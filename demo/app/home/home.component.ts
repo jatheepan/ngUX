@@ -13,7 +13,7 @@ export class HomeComponent {
     private modal = new ModalComponent();
     private suggestions: any;
     private suggestionsObserver: any;
-    private dictionary: any = [];
+
 
     constructor(private _service: HomeService) {
         this.suggestions = Observable.create(observer => {

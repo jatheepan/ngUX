@@ -17,7 +17,6 @@ var HomeComponent = (function () {
         var _this = this;
         this._service = _service;
         this.modal = new modal_component_1.ModalComponent();
-        this.dictionary = [];
         this.suggestions = Rx_1.Observable.create(function (observer) {
             _this.suggestionsObserver = observer;
         });

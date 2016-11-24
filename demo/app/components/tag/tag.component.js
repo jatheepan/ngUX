@@ -96,12 +96,20 @@ var TagComponent = (function () {
         }
     };
     /**
+     * When user click on the list item
+     * @param data
+     */
+    TagComponent.prototype.onItemClick = function (data) {
+        this.selectAnItem(data);
+    };
+    /**
      * Select one item from typeahead.
      * @param item
      */
     TagComponent.prototype.selectAnItem = function (item) {
         if (item && item.name) {
-            this.content += item.name; // TODO replace current word with..
+            // TODO replace current word with..
+            this.content += '<a href="0">' + item.name + '</a>';
         }
         this.resetResults();
     };

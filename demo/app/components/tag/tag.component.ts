@@ -43,7 +43,7 @@ export class TagComponent implements OnInit {
                 if(keyCode >= 48 && keyCode <= 90 || keyCode === 8) {
                     this.keyup.emit(this.getCurrentText(e.target.innerText));
                 }
-                else if(keyCode === 27){
+                else if(keyCode === 27) {
                     this.resetResults();
                 }
             });
@@ -56,7 +56,7 @@ export class TagComponent implements OnInit {
      * @param e
      */
     onKeyDown(e) {
-        let keyCode:any = (e.which) ? e.which : e.keyCode;
+        let keyCode: any = (e.which) ? e.which : e.keyCode;
 
         if([40, 38].indexOf(keyCode) !== -1) {
             e.preventDefault();
@@ -104,12 +104,21 @@ export class TagComponent implements OnInit {
     }
 
     /**
+     * When user click on the list item
+     * @param data
+     */
+    onItemClick(data) {
+        this.selectAnItem(data);
+    }
+
+    /**
      * Select one item from typeahead.
      * @param item
      */
     selectAnItem(item) {
         if(item && item.name) {
-        this.content += item.name; // TODO replace current word with..
+            // TODO replace current word with..
+            this.content += '<a href="0">' + item.name + '</a>';
         }
 
         this.resetResults();
@@ -123,11 +132,12 @@ export class TagComponent implements OnInit {
     highlightItem(index) {
         if(this.items && this.items.length && !isNaN(index)) {
             this.items.forEach(item => item.selected = false);
+
             this.selectedIndex = index;
             this.items[index].selected = true;
         }
     }
-    
+
     /**
      * Returns last word.
      * @param text

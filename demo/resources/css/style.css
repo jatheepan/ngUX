@@ -397,6 +397,8 @@ ul.data-list {
   margin-top: 30px;
   min-height: 100px;
   border: 1px solid #000; }
+  .tag-editor a {
+    color: #6daa09; }
 
 .suggestions {
   color: #000;
@@ -407,6 +409,7 @@ ul.data-list {
     list-style: none; }
   .suggestions li {
     padding: 5px;
+    cursor: pointer;
     background-color: #fff; }
     .suggestions li + li {
       border-top: 1px solid #eee; }
