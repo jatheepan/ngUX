@@ -43,7 +43,7 @@ var TagComponent = (function () {
         })
             .subscribe(function (keyCode) {
             if (keyCode >= 48 && keyCode <= 90 || keyCode === 8) {
-                _this.keyup.emit(_this.getCurrentText(e.target.innerText));
+                _this.keyup.emit(_this.getCurrentText());
             }
             else if (keyCode === 27) {
                 _this.resetResults();
@@ -108,8 +108,8 @@ var TagComponent = (function () {
      * @param item
      */
     TagComponent.prototype.selectAnItem = function (item) {
+        var selection = window.getSelection(), nodeValue = selection.focusNode.nodeValue;
         if (item && item.name) {
-            console.log(this.renderer);
             var editor = this.renderer.selectRootElement('#editor');
             var link = this.renderer.createElement(editor, 'a');
             this.renderer.setElementAttribute(link, 'href', item.link);
@@ -132,11 +132,28 @@ var TagComponent = (function () {
     };
     /**
      * Returns last word.
-     * @param text
      * @returns {any}
      */
-    TagComponent.prototype.getCurrentText = function (text) {
-        return text;
+    TagComponent.prototype.getCurrentText = function () {
+        var selection = window.getSelection();
+        var nodeValue = selection.focusNode.nodeValue;
+        var text = '';
+        if (nodeValue) {
+            var texts = nodeValue.split(' ');
+            var ranges_1 = [];
+            var totalChars_1 = 0;
+            texts.forEach(function (text) {
+                ranges_1.push([totalChars_1, totalChars_1 + text.length]);
+                totalChars_1 += text.length + 1;
+            });
+            for (var i = 0; i < ranges_1.length; i++) {
+                if (selection.anchorOffset > ranges_1[i][0] && selection.anchorOffset <= ranges_1[i][1]) {
+                    text = texts[i];
+                    break;
+                }
+            }
+        }
+        return text.trim();
     };
     /**
      * Remove all suggestions.

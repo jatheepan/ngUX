@@ -14,8 +14,8 @@ export class TagComponent implements OnInit {
     @Output() keyup = new EventEmitter<any>();
 
     constructor(private renderer: Renderer) {
-
     }
+
     /**
      * On initialize subscribe to suggestions.
      */
@@ -43,7 +43,7 @@ export class TagComponent implements OnInit {
             })
             .subscribe(keyCode => {
                 if(keyCode >= 48 && keyCode <= 90 || keyCode === 8) {
-                    this.keyup.emit(this.getCurrentText(e.target.innerText));
+                    this.keyup.emit(this.getCurrentText());
                 }
                 else if(keyCode === 27) {
                     this.resetResults();
@@ -118,8 +118,10 @@ export class TagComponent implements OnInit {
      * @param item
      */
     selectAnItem(item) {
+        let selection = window.getSelection(),
+            nodeValue = selection.focusNode.nodeValue;
+        
         if(item && item.name) {
-            console.log(this.renderer);
             let editor = this.renderer.selectRootElement('#editor');
             let link = this.renderer.createElement(editor, 'a');
 
@@ -148,11 +150,34 @@ export class TagComponent implements OnInit {
 
     /**
      * Returns last word.
-     * @param text
      * @returns {any}
      */
-    getCurrentText(text) {
-        return text;
+    getCurrentText() {
+        let selection = window.getSelection();
+        let nodeValue = selection.focusNode.nodeValue;
+        let text = '';
+        
+        if(nodeValue) {
+            let texts = nodeValue.split(' ');
+            let ranges = [];
+            let totalChars = 0;
+
+            texts.forEach(text => {
+                ranges.push([totalChars, totalChars + text.length]);
+                totalChars += text.length + 1;
+            });
+
+            for(let i = 0; i < ranges.length; i++) {
+                if(selection.anchorOffset > ranges[i][0] && selection.anchorOffset <= ranges[i][1]) {
+                    text = texts[i];
+                    break;
+                }
+            }
+            // let node = selection.focusNode;
+            // if(node.nodeName === '#text') {}
+        }
+
+        return text.trim();
     }
 
     /**
@@ -164,7 +189,7 @@ export class TagComponent implements OnInit {
     }
 
     setCursorPosition(node, position = 1) {
-        var range = document.createRange(),
+        let range = document.createRange(),
             selection = window.getSelection();
 
         range.selectNode(node);
