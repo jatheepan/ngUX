@@ -10,9 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var modal_component_1 = require('../components/modal/modal.component');
+var Rx_1 = require('rxjs/Rx');
+var home_service_1 = require('./home.service');
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(_service) {
+        var _this = this;
+        this._service = _service;
         this.modal = new modal_component_1.ModalComponent();
+        this.dictionary = [];
+        this.suggestions = Rx_1.Observable.create(function (observer) {
+            _this.suggestionsObserver = observer;
+        });
     }
     /**
      * Get alert modal.
@@ -42,12 +50,35 @@ var HomeComponent = (function () {
             ]
         }, function (value) { return console.log(value); });
     };
+    /**
+     * On tag input change.
+     *
+     * @param string
+     */
+    HomeComponent.prototype.onTagKeyUp = function (string) {
+        var _this = this;
+        if (typeof string === 'string') {
+            if (string.length) {
+                this._service
+                    .getDictionary()
+                    .subscribe(function (data) {
+                    var regex = new RegExp(string, 'gi');
+                    data = data.filter(function (item) { return regex.test(item.name); });
+                    _this.suggestionsObserver.next(data);
+                });
+            }
+            else {
+                this.suggestionsObserver.next([]);
+            }
+        }
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'home',
-            templateUrl: './app/home/home.component.html'
+            templateUrl: './app/home/home.component.html',
+            providers: [home_service_1.HomeService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [home_service_1.HomeService])
     ], HomeComponent);
     return HomeComponent;
 }());

@@ -9,22 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var home_component_1 = require('./home.component');
-var modal_module_1 = require('../components/modal/modal.module');
-var tag_module_1 = require('../components/tag/tag.module');
-var HomeModule = (function () {
-    function HomeModule() {
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+var HomeService = (function () {
+    function HomeService(_http) {
+        this._http = _http;
     }
-    HomeModule = __decorate([
-        core_1.NgModule({
-            imports: [common_1.CommonModule, modal_module_1.ModalModule, tag_module_1.TagModule],
-            declarations: [home_component_1.HomeComponent],
-            exports: [home_component_1.HomeComponent]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], HomeModule);
-    return HomeModule;
+    HomeService.prototype.getData = function () {
+        return this._http
+            .get('../app/home/data.json');
+    };
+    HomeService.prototype.getDictionary = function () {
+        return this.getData().map(function (res) { return res.json().dictionary; });
+    };
+    HomeService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], HomeService);
+    return HomeService;
 }());
-exports.HomeModule = HomeModule;
-//# sourceMappingURL=home.module.js.map
+exports.HomeService = HomeService;
+//# sourceMappingURL=home.service.js.map

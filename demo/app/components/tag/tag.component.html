@@ -1,0 +1,4 @@
+<div contenteditable="true" (keyup)="onKeyUp($event)" (keydown)="onKeyDown($event)" id="editor" class="editor tag-editor">{{content}}</div>
+<ul *ngIf="items.length" class="suggestions">
+    <li *ngFor="let item of items" [ngClass]="{selected: item.selected}">{{item.name}}</li>
+</ul>

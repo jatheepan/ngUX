@@ -5,3 +5,28 @@
   min-height: 100px;
   border: 1px solid #000;
 }
+
+.suggestions {
+  color: #000;
+  width: 200px;
+
+  &, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 5px;
+    background-color: #fff;
+
+    & + li {
+      border-top: 1px solid #eee;
+    }
+
+    &.selected {
+      background-color: #6daa09;
+    }
+  }
+
+}

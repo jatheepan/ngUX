@@ -9,12 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
 var tag_component_1 = require('./tag.component');
 var TagModule = (function () {
     function TagModule() {
     }
     TagModule = __decorate([
         core_1.NgModule({
+            imports: [common_1.CommonModule],
             declarations: [tag_component_1.TagComponent],
             exports: [tag_component_1.TagComponent]
         }), 
@@ -23,4 +25,4 @@ var TagModule = (function () {
     return TagModule;
 }());
 exports.TagModule = TagModule;
-//# sourceMappingURL=tag,module.js.map
+//# sourceMappingURL=tag.module.js.map
